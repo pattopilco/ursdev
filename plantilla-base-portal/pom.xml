@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>tech.espoch</groupId>
+    <artifactId>plantilla-base-portal</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <description>Insert description for your project here.</description>
+
+    <organization>
+        <name>Tech Espoch</name>
+        <url>https://www.espoch.tech</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <id>ppilcoa</id>
+            <name>Patricio Pilco</name>
+            <organization>Tech Espoch</organization>
+            <organizationUrl>https://www.espoch.tech</organizationUrl>
+            <email>patricio.pilco@espoch.tech</email>
+            <roles>
+                <role>Arquitectura</role>
+                <role>Desarrollo</role>
+            </roles>
+            <timezone>+05:30</timezone>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <modules>
+        <module>plantilla-base-portal-ear</module>
+        <module>plantilla-base-portal-web</module>
+        <module>plantilla-base-portal-ejb</module>
+    </modules>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <javaee.version>8.0.1</javaee.version>
+
+        <!-- other plugin versions -->
+        <version.compiler.plugin>3.8.1</version.compiler.plugin>
+        <version.ear.plugin>3.0.2</version.ear.plugin>
+        <version.ejb.plugin>3.0.1</version.ejb.plugin>
+        <version.war.plugin>3.2.3</version.war.plugin>
+
+        <!-- maven-compiler-plugin -->
+        <java.version>11</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.release>${java.version}</maven.compiler.release>
+
+        <!-- artefactos internos -->
+        <portal-repositorio.version>1.0.0</portal-repositorio.version>
+        <portal-plantilla-jsf.version>1.0.0</portal-plantilla-jsf.version>
+
+        <!-- artefactos externos -->
+        <slf4j-api.version>1.7.33</slf4j-api.version>
+        <lombok.version>1.18.20</lombok.version>
+        <primefaces.version>11.0.0-RC2</primefaces.version>
+        <audit4j-core.version>2.6.0</audit4j-core.version>
+        <jersey.version>2.30</jersey.version>
+        <commons-fileupload.version>1.4</commons-fileupload.version>
+        <commons-io.version>2.7</commons-io.version>
+        <commons-codec.version>1.15</commons-codec.version>
+
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>plantilla-base-portal-ejb</artifactId>
+                <version>${project.version}</version>
+                <type>ejb</type>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>plantilla-base-portal-web</artifactId>
+                <version>${project.version}</version>
+                <type>war</type>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-api</artifactId>
+                <version>${javaee.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.primefaces</groupId>
+                <artifactId>primefaces</artifactId>
+                <version>${primefaces.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>5.5.0.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.audit4j</groupId>
+                <artifactId>audit4j-core-iess</artifactId>
+                <version>${audit4j-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>${commons-fileupload.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>${commons-codec.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>tech.espoch</groupId>
+                <artifactId>repositorio-jpa</artifactId>
+                <version>${portal-repositorio.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>tech.espoch</groupId>
+                <artifactId>plantilla-jsf</artifactId>
+                <version>${portal-plantilla-jsf.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <release>${java.version}</release>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

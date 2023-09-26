@@ -1,0 +1,48 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				template="/plantilla/template.xhtml">
+	<ui:define name="title">TECH</ui:define>
+	<ui:define name="content">
+		<div class="px-0 py-4 md:px-4">
+			<div class="border-2 border-dashed surface-border border-round surface-card"
+				 style="min-height: 20rem">
+				<div class="ui-g-12 ui-lg-6">
+					<!-- Left Side -->
+					<div class="card card-w-title">
+						<h1>División Política</h1>
+						<p:panelGrid columns="1" style="margin-bottom:10px" layout="grid"
+									 styleClass="form-group ui-panelgrid-blank">
+							<p:selectOneMenu id="provincia"
+											 value="#{transversalControlador.transversalBean.provinciaSeleccionada}"
+											 style="margin-bottom:10px;">
+								<f:selectItem itemLabel="Seleccionar Provincia" itemValue="" />
+								<f:selectItems
+										value="#{transversalControlador.transversalBean.provincias}" />
+								<p:ajax update="canton" event="change"
+										listener="#{transversalControlador.obtenerCantonDemo()}" />
+							</p:selectOneMenu>
+							<p:selectOneMenu id="canton"
+											 value="#{transversalControlador.transversalBean.cantonSeleccionado}"
+											 style="margin-bottom:10px;">
+								<f:selectItem itemLabel="Seleccionar Cantón" itemValue="" />
+								<f:selectItems
+										value="#{transversalControlador.transversalBean.cantones}" />
+								<p:ajax update="parroquia" event="change"
+										listener="#{transversalControlador.obtenerParroquiaDemo()}" />
+							</p:selectOneMenu>
+							<p:selectOneMenu id="parroquia"
+											 value="#{transversalControlador.transversalBean.parroquiaSeleccionada}"
+											 style="margin-bottom:10px;">
+								<f:selectItem itemLabel="Seleccionar Parroquia" itemValue="" />
+								<f:selectItems
+										value="#{transversalControlador.transversalBean.parroquias}" />
+							</p:selectOneMenu>
+						</p:panelGrid>
+					</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
